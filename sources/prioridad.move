@@ -47,25 +47,3 @@ prioridad.precio=nuevo_precio;}
 //Función para enviar la prioridad desde Cámara de Joyería hacia el dueño de la prioridad
 public fun asignar_prioridad(prioridad: Prioridad, nuevo_dueno: address){
     transfer::transfer(prioridad, nuevo_dueno);}
-
-/* Probando función compra-venta
-
-public fun comprar_prioridad(prioridad: Prioridad, &mut monedas: Coin<u64>, fee: u64, ctx: &mut TxContext){
-    // 1️⃣ Verificar que el comprador envía suficiente dinero
-    let total_pago = prioridad.precio + fee;
-    assert!(coin::value(&monedas) >= total_pago, 1); // 1 = saldo insuficiente
-
-    // 2️⃣ Dividir el pago en precio y fee
-    let monedas_para_vendedor = coin::split(&mut monedas, prioridad.precio);
-    let monedas_para_joya = coin::split(&mut monedas, fee);
-
-    // 3️⃣ Enviar la parte del fee a JOYA
-    coin::transfer(monedas_para_joya, JOYA);
-
-    // 4️⃣ Enviar el precio al dueño actual de la prioridad
-    let dueno: address= object::owner(&prioridad);
-    coin::transfer<u64>(monedas_para_vendedor, dueno);
-
-    // 6️⃣ Transferir la prioridad al comprador
-    transfer::transfer(prioridad, tx_context::sender(ctx));*/
-}
